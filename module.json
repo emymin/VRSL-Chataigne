@@ -1,0 +1,196 @@
+{
+	"name": "VRSL Light Control",
+	"type": "DMX",
+	"path": "Protocol",
+	
+	"version": "1.0.0",
+	"description": "Module to control VRSL's Grid Node over Art-Net in Chataigne",
+	"url": "https://github.com/emymin/VRSL-Chataigne",
+	"downloadURL": "https://github.com/emymin/VRSL-Chataigne/archive/master.zip",
+
+	"hasInput": false,
+	"hasOutput": true, 
+
+	"hideDefaultCommands": true,
+	
+	"defaults":
+	{		
+		"dmxType":"Art-Net",
+        "artNet/input/enabled":0
+	},
+
+	"parameters":
+	{
+		
+		"Setup":{
+			"type": "Container",
+			"collapsed": false,
+
+            "Fixtures" : { "type": "File", "description": "Select json file with fixtures."},
+			"Load Fixtures": { "type": "Trigger", "description": "Load the fixture files and create parameters for lights"},
+			"Clear DMX": { "type": "Trigger", "description": "Set all DMX channels to 0"}
+		},
+		"Lights":{
+			"type": "Container",
+			"collapsed": true
+		},
+		"Groups":{
+			"type": "Container",
+			"collapsed": true
+		}
+	},
+
+	"hideDefaultParameters": [],
+	"scripts": [
+		"vrsl-lights.js"
+	],
+	"values": {},
+	"commands": {
+		"Color": {
+			"menu": "",
+			"callback": "setColor",
+			"parameters": {
+				"Light" : {
+					"type": "String"
+				},
+				"Color": {
+					"type": "Color",
+					"default": [0,0,0,1],
+					"mappingIndex": 0
+				}
+			}
+		},
+		"PanTilt": {
+			"menu": "",
+			"callback": "setPanTilt",
+			"parameters": {
+				"Light" : {
+					"type": "String"
+				},
+				"PanTilt": {
+					"type": "Point2D",
+					"default": [0,0],
+					"min": [-1,-1],
+					"max": [1,1],
+					"mappingIndex": 0
+				}
+			}
+		},
+        "FinePanTilt": {
+			"menu": "",
+			"callback": "setFinePanTilt",
+			"parameters": {
+				"Light" : {
+					"type": "String"
+				},
+				"FinePanTilt": {
+					"type": "Point2D",
+					"default": [0,0],
+					"min": [-1,-1],
+					"max": [1,1],
+					"mappingIndex": 0
+				}
+			}
+		},
+        "ConeWidth": {
+			"menu": "",
+			"callback": "setConeWidth",
+			"parameters": {
+				"Light" : {
+					"type": "String"
+				},
+				"ConeWidth": {
+					"type": "Float",
+					"default": 0,
+					"min": 0,
+					"max": 1,
+					"mappingIndex": 0
+				}
+			}
+		},
+        "Intensity": {
+			"menu": "",
+			"callback": "setIntensity",
+			"parameters": {
+				"Light" : {
+					"type": "String"
+				},
+				"Intensity": {
+					"type": "Float",
+					"default": 0,
+					"min": 0,
+					"max": 1,
+					"mappingIndex": 0
+				}
+			}
+		},
+        "Strobe": {
+			"menu": "",
+			"callback": "setStrobe",
+			"parameters": {
+				"Light" : {
+					"type": "String"
+				},
+				"Strobe": {
+					"type": "Integer",
+					"default": 0,
+					"min": 0,
+					"max": 255,
+					"mappingIndex": 0
+				}
+			}
+		},
+        "GOBOSelect": {
+			"menu": "",
+			"callback": "setGOBOSelect",
+			"parameters": {
+				"Light" : {
+					"type": "String"
+				},
+				"GOBOSelect": {
+					"type": "Integer",
+					"default": 0,
+					"min": 0,
+					"max": 6,
+					"mappingIndex": 0
+				}
+			}
+		},
+        "GOBOSpeed": {
+			"menu": "",
+			"callback": "setGOBOSpeed",
+			"parameters": {
+				"Light" : {
+					"type": "String"
+				},
+				"GOBOSpeed": {
+					"type": "Float",
+					"default": 0,
+					"min": 0,
+					"max": 1,
+					"mappingIndex": 0
+				}
+			}
+		},
+		
+		"Set": {
+			"menu": "",
+			"callback": "setGenericChannel",
+			"parameters": {
+				"Sector" : {
+					"type": "Integer"
+				},
+				"Channel" : {
+					"type": "Integer"
+				},
+				"Value": {
+					"type": "Float",
+					"default": 0,
+					"min": 0,
+					"max": 1,
+					"mappingIndex": 0
+				}
+			}
+		}
+	}
+}
