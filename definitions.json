@@ -1,0 +1,75 @@
+{
+    "channel_info": {
+        "pantilt": {"description": "Pan and Tilt of the light","length": 2,"range":[-1,1]},
+        "finepantilt": {"description": "Finer Pan and Tilt of the light","length": 2,"range":[-1,1]},
+        "conewidth": {"description": "Spotlight radius","length": 1},
+        "intensity": {"description": "Intensity of the light","length": 1},
+        "strobe": {"description": "Strobe effect (0-009 is off, 010-255 is slow to fast)","length": 1},
+        "color": {"description": "Color of the light","length": 3},
+        "goboselect": {"description": "GOBO Selection (0 is no gobo, 1-6 are various gobos)","length": 1},
+        "gobospeed": {"description": "Speed at which the GOBO spins","length": 1},
+        "moverspeed": {"description": "Mover Speed","length": 1},
+        "length": {"description": "Length of the beams","length": 1},
+        "width": {"description": "Width of the beams","length": 1},
+        "flatness": {"description": "Flatness of the beams","length": 1},
+        "beamcount": {"description": "Amount of beams","length": 1},
+        "beamthickness": {"description": "Thickness of the beams","length": 1},
+        "spinspeed": {"description": "Speed at which the beams spin","length": 1}
+    },
+    "fixture_info":{
+        "spotlight":{
+            "pantilt":{"mapping":[1,3]},
+            "finepantilt":{"mapping":[2,4]},
+            "conewidth":{"mapping":[5]},
+            "intensity":{"mapping":[6]},
+            "strobe":{"mapping":[7]},
+            "color":{"mapping":[8,9,10]},
+            "gobospeed":{"mapping":[11]},
+            "goboselect":{"mapping":[12]},
+            "moverspeed":{"mapping":[13]}
+        },
+        "washlight":{
+            "pantilt":{"mapping":[1,3]},
+            "finepantilt":{"mapping":[2,4]},
+            "conewidth":{"mapping":[5]},
+            "intensity":{"mapping":[6]},
+            "strobe":{"mapping":[7]},
+            "color":{"mapping":[8,9,10]},
+            "gobospeed":{"mapping":[13]}
+        },
+        "laser":{
+            "pantilt":{"mapping":[1,2]},
+            "length":{"mapping":[3]},
+            "width":{"mapping":[4]},
+            "flatness":{"mapping":[5]},
+            "beamcount":{"mapping":[6]},
+            "spinspeed":{"mapping":[7]},
+            "color":{"mapping":[8,9,10]},
+            "intensity":{"mapping":[11]},
+            "beamthickness":{"mapping":[12]},
+            "moverspeed":{"mapping":[13]}
+        },
+        "discoball":{
+            "intensity":{"mapping":[1]}
+        },
+        "flasher":{
+            "intensity":{"mapping":[1]}
+        },
+        "blinder":{
+            "intensity":{"mapping":[1]},
+            "color":{"mapping":[2,3,4]},
+            "strobe":{"mapping":[5]}
+        },
+        "barlight":{
+            "intensity":{"mapping":[1]},
+            "color":{"mapping":[2,3,4]},
+            "strobe":{"mapping":[5]}
+        },
+        "parlight":{
+            "intensity":{"mapping":[1]},
+            "color":{"mapping":[2,3,4]},
+            "strobe":{"mapping":[5]}
+        }
+
+    }
+}

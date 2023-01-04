@@ -1,12 +1,12 @@
 {
-    "lights":{
-        "center_light_front":{"type":"spotlight","address":0},
-        "left_light_front":{"type":"spotlight","address":1},
-        "right_light_front":{"type":"spotlight","address":2},
-        "laser_back":{"type":"laser","address":10}
+    "fixtures":{
+        "center_light_front":{"type":"spotlight","sector":0},
+        "left_light_front":{"type":"spotlight","sector":1},
+        "right_light_front":{"type":"spotlight","sector":2},
+        "laser_back":{"type":"laser","sector":10}
     },
     "groups":{
-        "front_lights":{"type":"group","members":{"center_light_front":{},"left_light_front":{},"right_light_front":{}}},
-        "side_lights":{"type":"group","members":{"left_light_front":{},"right_light_front":{"flip":true}}}
+        "front_lights":{"members":{"center_light_front":{},"left_light_front":{},"right_light_front":{}},"parameters":["pantilt","color","intensity"]},
+        "side_lights":{"members":{"left_light_front":{},"right_light_front":{"flip":true}},"parameters":["pantilt","color","intensity"]}
     }
 }

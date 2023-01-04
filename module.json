@@ -27,7 +27,8 @@
 			"collapsed": false,
 
             "Fixtures" : { "type": "File", "description": "Select json file with fixtures."},
-			"Load Fixtures": { "type": "Trigger", "description": "Load the fixture files and create parameters for lights"},
+			"Definitions" : { "type": "File", "description": "Select json file with definitions."},
+			"Load Fixtures": { "type": "Trigger", "description": "Load the fixture and definitions files and create parameters for lights"},
 			"Clear DMX": { "type": "Trigger", "description": "Set all DMX channels to 0"}
 		},
 		"Lights":{
