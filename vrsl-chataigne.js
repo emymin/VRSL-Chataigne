@@ -5,7 +5,7 @@ var fixture_info;
 var parameterPath;
 
 function init(){
-    script.log("VRSL-LIGHTS initialized");
+    script.log("VRSL-Chataigne initialized");
     if(local.parameters.setup.fixtures.get()!=""){
         loadFixtures();
     }else{
@@ -25,8 +25,8 @@ function loadFixtures(){
     groups = configuration["groups"];
     
     parameterPath = local.getChild("Parameters");
-    var lightsContainer = parameterPath.addContainer("Lights");
-    lightsContainer.setCollapsed(true);
+    var fixturesContainer = parameterPath.addContainer("Fixtures");
+    fixturesContainer.setCollapsed(true);
     var groupsContainer = parameterPath.addContainer("Groups");
     groupsContainer.setCollapsed(true);
     
@@ -34,7 +34,7 @@ function loadFixtures(){
     for(var i=0;i<fixtureKeys.length;i++){
         var key = fixtureKeys[i];
         var channels = util.getObjectProperties(fixture_info[fixtures[key].type]);
-        createParameters(lightsContainer.addContainer(key),key,channels);
+        createParameters(fixturesContainer.addContainer(key),key,channels);
     }
     var groupKeys = util.getObjectProperties(groups);
     for(var i=0;i<groupKeys.length;i++){
@@ -72,7 +72,7 @@ function moduleParameterChanged(param){
     
     script.log("Parameter data: "+param.get());
     var isGroup = param.getParent().getParent().name=="groups";
-    var group_or_light_name = param.getParent().name;
+    var group_or_fixture_name = param.getParent().name;
     var channel_name = param.name;
     var channel_length = channel_info[channel_name].length;
     var value = param.get();
@@ -85,13 +85,13 @@ function moduleParameterChanged(param){
     var fixtures_to_modify = [];
     var members_to_modify = [];
     if(isGroup){
-        members_to_modify = groups[group_or_light_name].members;
+        members_to_modify = groups[group_or_fixture_name].members;
         var member_names = util.getObjectProperties(members_to_modify);
         for(var i=0;i<member_names.length;i++){
             fixtures_to_modify.push(member_names[i]);
         }
     }else{
-        fixtures_to_modify.push(group_or_light_name);
+        fixtures_to_modify.push(group_or_fixture_name);
     }
     for(var i=0;i<channel_length;i++){
         var range = channel_info[channel_name].range;
@@ -105,7 +105,7 @@ function moduleParameterChanged(param){
         var fixture_name = fixtures_to_modify[i];
         var sector = fixtures[fixture_name].sector;
         var mapping = fixture_info[fixtures[fixture_name].type][channel_name].mapping;
-        script.log("\nLight name: "+fixture_name+"\nSector: "+sector+"\nChannel name: "+channel_name);
+        script.log("\nFixture name: "+fixture_name+"\nSector: "+sector+"\nChannel name: "+channel_name);
         for(var j=0;j<channel_length;j++){
             var final_value = value[j];
             if( isGroup && (channel_name=="pantilt" || channel_name=="finepantilt") && members_to_modify[fixture_name].flip && j==1){
@@ -138,28 +138,29 @@ function getParameter(fixture_name, channel) {
 	if (isGroup) {
 		parameter =  parameterPath.groups[pathName][channel];
 	} else {
-		parameter = parameterPath.lights[pathName][channel];
+		parameter = parameterPath.fixtures[pathName][channel];
 	}
     return parameter;
 }
 function setChannelParameter(fixture_name,channel_name,value){
     if(fixture_name!=""){
         var parameter = getParameter(fixture_name,channel_name);
-        if(!parameter){script.log("Light "+fixture_name+" of type "+fixtures[fixture_name].type+" doesn't have channel "+channel_name); return;}
+        if(!parameter){script.log("Fixture "+fixture_name+" of type "+fixtures[fixture_name].type+" doesn't have channel "+channel_name); return;}
         parameter.set(value);
     }
 }
 
 //callbacks
 
-function setColor (light, color) { setChannelParameter(light,"color",color);}
-function setPanTilt(light,pantilt){setChannelParameter(light,"pantilt",pantilt);}
-function setFinePanTilt(light,finepantilt){setChannelParameter(light,"finepantilt",finepantilt);}
-function setConeWidth(light,conewidth){setChannelParameter(light,"conewidth",conewidth);}
-function setIntensity(light,intensity){setChannelParameter(light,"intensity",intensity);}
-function setStrobe(light,strobe){setChannelParameter(light,"strobe",strobe);}
-function setGOBOSelect(light,goboselect){setChannelParameter(light,"goboselect",goboselect);}
-function setGOBOSpeed(light,gobospeed){setChannelParameter(light,"gobospeed",gobospeed);}
+function setColor (fixture, color) { setChannelParameter(fixture,"color",color);}
+function setPanTilt(fixture,pantilt){setChannelParameter(fixture,"pantilt",pantilt);}
+function setFinePanTilt(fixture,finepantilt){setChannelParameter(fixture,"finepantilt",finepantilt);}
+function setConeWidth(fixture,conewidth){setChannelParameter(fixture,"conewidth",conewidth);}
+function setIntensity(fixture,intensity){setChannelParameter(fixture,"intensity",intensity);}
+function setStrobe(fixture,strobe){setChannelParameter(fixture,"strobe",strobe);}
+function setGOBOSelect(fixture,goboselect){setChannelParameter(fixture,"goboselect",goboselect);}
+function setGOBOSpeed(fixture,gobospeed){setChannelParameter(fixture,"gobospeed",gobospeed);}
+function setNamedChannel(fixture,channelname,value){setChannelParameter(fixture,channelname,value);}
 
 function setGenericChannel(sector,channel,value){
     var address = sector*13+channel;

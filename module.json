@@ -31,7 +31,7 @@
 			"Load Fixtures": { "type": "Trigger", "description": "Load the fixture and definitions files and create parameters for lights"},
 			"Clear DMX": { "type": "Trigger", "description": "Set all DMX channels to 0"}
 		},
-		"Lights":{
+		"Fixtures":{
 			"type": "Container",
 			"collapsed": true
 		},
@@ -43,7 +43,7 @@
 
 	"hideDefaultParameters": [],
 	"scripts": [
-		"vrsl-lights.js"
+		"vrsl-chataigne.js"
 	],
 	"values": {},
 	"commands": {
@@ -51,7 +51,7 @@
 			"menu": "",
 			"callback": "setColor",
 			"parameters": {
-				"Light" : {
+				"Fixture" : {
 					"type": "String"
 				},
 				"Color": {
@@ -65,7 +65,7 @@
 			"menu": "",
 			"callback": "setPanTilt",
 			"parameters": {
-				"Light" : {
+				"Fixture" : {
 					"type": "String"
 				},
 				"PanTilt": {
@@ -81,7 +81,7 @@
 			"menu": "",
 			"callback": "setFinePanTilt",
 			"parameters": {
-				"Light" : {
+				"Fixture" : {
 					"type": "String"
 				},
 				"FinePanTilt": {
@@ -97,7 +97,7 @@
 			"menu": "",
 			"callback": "setConeWidth",
 			"parameters": {
-				"Light" : {
+				"Fixture" : {
 					"type": "String"
 				},
 				"ConeWidth": {
@@ -113,7 +113,7 @@
 			"menu": "",
 			"callback": "setIntensity",
 			"parameters": {
-				"Light" : {
+				"Fixture" : {
 					"type": "String"
 				},
 				"Intensity": {
@@ -129,7 +129,7 @@
 			"menu": "",
 			"callback": "setStrobe",
 			"parameters": {
-				"Light" : {
+				"Fixture" : {
 					"type": "String"
 				},
 				"Strobe": {
@@ -145,7 +145,7 @@
 			"menu": "",
 			"callback": "setGOBOSelect",
 			"parameters": {
-				"Light" : {
+				"Fixture" : {
 					"type": "String"
 				},
 				"GOBOSelect": {
@@ -161,7 +161,7 @@
 			"menu": "",
 			"callback": "setGOBOSpeed",
 			"parameters": {
-				"Light" : {
+				"Fixture" : {
 					"type": "String"
 				},
 				"GOBOSpeed": {
@@ -190,6 +190,25 @@
 					"min": 0,
 					"max": 1,
 					"mappingIndex": 0
+				}
+			}
+		},
+		"SetChannel":{
+			"menu":"",
+			"callback":"setNamedChannel",
+			"parameters":{
+				"Fixture":{
+					"type":"String"
+				},
+				"ChannelName":{
+					"type":"String"
+				},
+				"Value":{
+					"type":"Float",
+					"default":0,
+					"min":0,
+					"max":1,
+					"mappingIndex":0
 				}
 			}
 		}
